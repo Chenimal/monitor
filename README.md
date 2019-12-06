@@ -15,6 +15,6 @@ docker-compose down
 
 ### Todo:
 
-- Integrate with mysql (add mysqld_exporter)
+- Preconfigure datasouce and dashboard config
 - Integrate with php (add php_exporter)
-- Remove the default exporter
+- Remote service monitoring
