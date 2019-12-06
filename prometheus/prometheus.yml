@@ -28,7 +28,7 @@ scrape_configs:
 
     static_configs:
       - targets: ['localhost:9090']
-  - job_name: "node"
+  - job_name: "mysql"
     scrape_interval: "15s"
     static_configs:
-      - targets: ['exporter:9100']
+      - targets: ['mysql-exporter:9100']

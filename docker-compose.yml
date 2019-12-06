@@ -1,13 +1,18 @@
 version: "3.7"
 services:
-  exporter:
-    image: prom/node-exporter:latest
+  mysql-exporter:
+    container_name: mysql-exporter
+    image: prom/node-exporter
+    environment:
+      - DATA_SOURCE_NAME=root:hello123@(onestep-db:3306)/
     ports:
       - "9100:9100"
     networks:
       - backend
-  prom:
-    image: quay.io/prometheus/prometheus:v2.0.0
+
+  prometheus:
+    container_name: prometheus
+    image: prom/prometheus:v2.0.0
     volumes:
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
     command: "--config.file=/etc/prometheus/prometheus.yml --storage.tsdb.path=/etc/prometheus"
@@ -16,15 +21,17 @@ services:
     networks:
       - backend
     depends_on:
-      - exporter
+      - mysql-exporter
+
   grafana:
+    container_name: grafana
     image: grafana/grafana
     ports:
       - "3000:3000"
     networks:
       - backend
     depends_on:
-      - prom
+      - prometheus
 
 networks:
   backend:
