@@ -2,11 +2,11 @@ version: "3.7"
 services:
   mysql-exporter:
     container_name: mysql-exporter
-    image: prom/node-exporter
+    image: prom/mysqld-exporter
     environment:
       - DATA_SOURCE_NAME=root:hello123@(onestep-db:3306)/
     ports:
-      - "9100:9100"
+      - "9104:9104"
     networks:
       - backend
 
