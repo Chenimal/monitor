@@ -41,5 +41,5 @@ And restart php-fpm: `/etc/init.d/php-fpm restart`
 
 ### Todo:
 
-- Integrate with php (add php_exporter)
+- ADD redis
 - Remote service monitoring

@@ -10,6 +10,15 @@ services:
     networks:
       - backend
 
+  php-fpm-exporter:
+    container_name: php-fpm-exporter
+    image: bakins/php-fpm-exporter:v0.6.0
+    ports:
+      - '9190:9190'
+    networks:
+      - backend
+    command: "--addr 0.0.0.0:9190 --endpoint http://onestep/php_status"
+
   mysql-exporter:
     container_name: mysql-exporter
     image: prom/mysqld-exporter
@@ -33,6 +42,7 @@ services:
     depends_on:
       - mysql-exporter
       - nginx-exporter
+      - php-fpm-exporter
 
   grafana:
     container_name: grafana
