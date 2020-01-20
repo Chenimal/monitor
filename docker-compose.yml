@@ -29,6 +29,16 @@ services:
     networks:
       - backend
 
+  redis-exporter:
+    container_name: redis-exporter
+    image: oliver006/redis_exporter:latest
+    environment:
+      - REDIS_ADDR=redis://redis:6379
+    ports:
+      - "9121:9121"
+    networks:
+      - backend
+
   prometheus:
     container_name: prometheus
     image: prom/prometheus:v2.0.0
@@ -48,7 +58,7 @@ services:
     container_name: grafana
     image: grafana/grafana
     environment:
-      # 配置 Grafana 的默认 admin 密码。
+      # default admin password for grafana
       - GF_SECURITY_ADMIN_PASSWORD=hello123
     volumes:
       - ./grafana:/etc/grafana/provisioning
