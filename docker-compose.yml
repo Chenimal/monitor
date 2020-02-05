@@ -53,6 +53,7 @@ services:
       - mysql-exporter
       - nginx-exporter
       - php-fpm-exporter
+    restart: unless-stopped
 
   grafana:
     container_name: grafana
@@ -68,6 +69,7 @@ services:
       - backend
     depends_on:
       - prometheus
+    restart: unless-stopped
 
 networks:
   backend:

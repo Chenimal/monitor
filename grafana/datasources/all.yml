@@ -5,3 +5,11 @@ datasources:
     type: prometheus
     access: proxy
     url: http://prometheus:9090
+
+  - name: LocalMysql
+    type: mysql
+    url: onestep-db:3306
+    database: chen
+    user: root
+    secureJsonData:
+      password: hello123
